@@ -4,7 +4,6 @@ function MOEAISa(Global)
     %% Generate random population
     Population = InitialPop(Global.N,Global.D);
     [~,FrontNo,CrowdDis] = EnvironmentalSelection(Population,Global.N);
-    iter = 1;
     LC = 10;
     States = 0.05:0.05:1;
     LS = length(States);
@@ -32,7 +31,6 @@ function MOEAISa(Global)
             StateAction((i+1)/2,:) =  [state CrossoverSeq];    
         end
         [Population,FrontNo,CrowdDis,p,site] = EnvironmentalSelection([Population,Offspring],Global.N,MatingPool,StateAction,LS,LC);
-        iter = iter+1;
         Ptable(site) = (1-alpha)*Ptable(site) + alpha * p(site);
     end
 end
